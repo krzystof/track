@@ -3,6 +3,12 @@ require "commands/short_summary"
 class Cli
   COMMANDS = [
     ShortSummary,
+    # StartTracking
+    # StopTracking
+    # ContinueTracking
+    # SwitchTracking (between previous) -> can accept project name
+    # WeeklyReport -> can accept project name
+    # DailyReport -> can accept project name
   ]
 
   attr_reader :input, :output
