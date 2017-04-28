@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
-# $LOAD_PATH << "../app"
-# p $LOAD_PATH
+$LOAD_PATH.unshift File.dirname(File.realpath(__FILE__)) + "/../lib"
 
-Cli.new(Input.new, Output.new).boot().run(ARGV)
+require 'cli'
+require 'console_input'
+require 'console_output'
+
+Cli.run(ConsoleInput.new(ARGV), ConsoleOutput.new)
