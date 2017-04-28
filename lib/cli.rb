@@ -1,12 +1,11 @@
-require "commands/track"
+require "commands/short_summary"
 
 class Cli
   COMMANDS = [
-    Track
+    ShortSummary,
   ]
 
-  @input
-  @output
+  attr_reader :input, :output
 
   def initialize(input, output)
     @input = input

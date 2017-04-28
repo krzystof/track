@@ -1,12 +1,13 @@
-class Track
-  attr_reader :output
+class ShortSummary
+  attr_reader :input, :output
 
-  def initialize(output)
+  def initialize(input, output)
+    @input = input
     @output = output
   end
 
-  def self.execute(output)
-    self.new(output).execute
+  def self.execute(input, output)
+    self.new(input, output).execute
   end
 
   def self.matches(input)
