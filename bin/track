@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+# $LOAD_PATH << "../app"
+# p $LOAD_PATH
+
+Cli.new(Input.new, Output.new).boot().run(ARGV)
