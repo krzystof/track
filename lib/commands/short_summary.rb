@@ -10,6 +10,15 @@ class ShortSummary < BaseCommand
     output.text('No previous entries')
 
     # if nothing in progress
-    output.text('Nothing in progress')
+    print_wip
+  end
+
+  private
+  def print_wip
+    if @timelog.wip?
+      output.text('One is in progress!')
+    else
+      output.text('Nothing in progress')
+    end
   end
 end

@@ -1,18 +1,24 @@
 class Record
   attr_reader :project, :task, :start, :finish
 
-  def initialize(project, task, timestamp)
-    @project = project
-    @task = task
-    @start = timestamp
+  def initialize(params)
+    @project = params[:project]
+    @task = params[:task]
+    @start = params[:start]
+    @finish = params[:finish] || nil
   end
 
-  def to_s
+  def to_h
     {
       :project => @project,
       :task => @task,
       :start => @start,
       :finish => @finish
-    }.to_s
+    }
+  end
+
+  def in_progress
+    p @finish
+    @finish == nil
   end
 end

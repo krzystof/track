@@ -1,9 +1,12 @@
+require "track/timelog"
+
 class BaseCommand
   attr_reader :input, :output
 
   def initialize(input, output)
     @input = input
     @output = output
+    @timelog = Timelog.boot
   end
 
   def self.execute(input, output)

@@ -1,23 +1,40 @@
 require "json"
 
-class TimeLog
+class Timelog
   RECORDS_FILE = "timelog.json"
 
   def self.boot
     self.ensure_file_is_there
-    self.new self.open_file.read
+    records = self.parse_records self.open_file.read
+    self.new records
   end
 
-  def initialize(content)
-    @records = JSON.parse(content)["records"]
+  def initialize(records)
+    @records = records
   end
 
   def append(record)
     @records.push(record)
-    self.class.save_all(@records)
+    save
+  end
+
+  def wip?
+    @records.any? { |r| r.in_progress }
+  end
+
+  def save
+    self.class.open_file.write JSON.generate({:records => @records})
   end
 
   private
+  def self.parse_records(content)
+    if content.empty?
+      []
+    else
+      JSON.parse(content)["records"]
+    end
+  end
+
   def self.ensure_file_is_there
     if not File.exist? self.filepath
       self.open_file.write JSON.generate({:records => []})
@@ -30,9 +47,5 @@ class TimeLog
 
   def self.filepath
     "#{Dir.pwd}/storage/#{RECORDS_FILE}"
-  end
-
-  def self.save_all(records)
-    self.open_file.write JSON.generate({:records => records})
   end
 end
