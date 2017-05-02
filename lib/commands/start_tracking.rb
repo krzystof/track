@@ -15,6 +15,8 @@ class StartTracking < BaseCommand
     start = DateTime.now.strftime("%s").to_i
 
     @timelog.append Record.new({ project: project, task: task, start: start })
-    # @todo message something here
+    @timelog.close
+
+    @output.in_progress @timelog.wip
   end
 end

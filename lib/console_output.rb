@@ -18,6 +18,20 @@ class ConsoleOutput
   def confirm(message)
     puts
     print @colors.white.on_blue " Sure? "
-    print @colors.regular(" #{message} ")
+    puts @colors.regular(" #{message} ")
+  end
+
+  def info(message)
+    puts
+    print @colors.white.on_blue " WIP "
+    puts @colors.regular(" #{message} ")
+  end
+
+  def in_progress(record)
+    if time < 60
+      info("Now working on task #{record.task} on the project #{record.project}")
+    else
+      info("Working on task #{record.task} on the project #{record.project} for #{formated(time)}")
+    end
   end
 end

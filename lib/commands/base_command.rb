@@ -6,7 +6,7 @@ class BaseCommand
   def initialize(input, output)
     @input = input
     @output = output
-    @timelog = Timelog.boot
+    @timelog = Timelog.open
   end
 
   def self.execute(input, output)
