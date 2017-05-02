@@ -1,16 +1,7 @@
-class ShortSummary
-  attr_reader :input, :output
+require "commands/base_command"
 
-  def initialize(input, output)
-    @input = input
-    @output = output
-  end
-
-  def self.execute(input, output)
-    self.new(input, output).execute
-  end
-
-  def self.matches(input)
+class ShortSummary < BaseCommand
+  def self.matches?(input)
     input.empty?
   end
 

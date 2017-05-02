@@ -1,9 +1,12 @@
 require "commands/short_summary"
+require "commands/start_tracking"
+require "commands/purge"
 
 class Cli
   COMMANDS = [
+    Purge,
+    StartTracking,
     ShortSummary,
-    # StartTracking
     # StopTracking
     # ContinueTracking
     # SwitchTracking (between previous) -> can accept project name
@@ -28,11 +31,11 @@ class Cli
     if cmd
       cmd.execute @input, @output
     else
-      @output.error "Sorry! I didn't find a command for whatever you tried to type."
+      @output.error "I didn't that. Can you reformulate?"
     end
   end
 
   def matching_command
-    COMMANDS.find { |c| c.matches @input }
+    COMMANDS.find { |c| c.matches? @input }
   end
 end
