@@ -23,15 +23,11 @@ class ConsoleOutput
 
   def info(message)
     puts
-    print @colors.white.on_blue " WIP "
+    print @colors.white.on_blue " Hey! "
     puts @colors.regular(" #{message} ")
   end
 
   def in_progress(record)
-    if record.seconds < 60
-      info("Now working on task #{record.task} on the project #{record.project}")
-    else
-      info("Working on task #{record.task} on the project #{record.project} for #{formated(time)}")
-    end
+    info("Working on task '#{record.task}' on the project '#{record.project}' for #{record.human_time}")
   end
 end

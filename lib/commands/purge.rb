@@ -8,7 +8,7 @@ class Purge < BaseCommand
   end
 
   def execute
-    output.confirm "This will delete all you records. Are? You? Sure?"
-    p input.read
+    output.info "All the records have been deleted"
+    Timelog.delete
   end
 end

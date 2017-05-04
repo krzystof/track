@@ -14,7 +14,7 @@ class TimelogTest < Minitest::Test
   end
 
   def test_can_save_a_record_on_an_empty_file
-    record = Record.new({ "project" => "a project", "task" => "a task" })
+    record = Record.new({ :project => "a project", :task => "a task" })
 
     t = Timelog.open(TESTLOG)
     t.append record

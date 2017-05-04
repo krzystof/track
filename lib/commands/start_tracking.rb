@@ -12,7 +12,7 @@ class StartTracking < BaseCommand
     project = @input.at_position 0
     task = @input.at_position 1
 
-    @timelog.append Record.new({ project: project, task: task })
+    @timelog.append Record.new({ :project => project, :task => task })
     @timelog.commit
 
     @output.in_progress @timelog.wip
