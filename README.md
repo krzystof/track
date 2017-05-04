@@ -6,15 +6,23 @@
 
 ## Todo
 
-`track`
-Show the 3 previous entries
-Show the current one with a nicely formatted time
+`track` show the 5 last records + the current one
 
-`track stop`
-stop the timer
+`track stop` stop the timer
 
-`track <project> <task>`
-stops the previous timer and start the new task
+`track <project> <task>` stops the previous timer and start the new task
+
+`track help` show the commands
+
+`track switch` switch to the previous entry with a different task
+
+`track continue` add a new record based on the previous record
+
+`track last` show last x records (5 by default)
+
+add --project to scope the action (continue, switch, last)
+
+discard a record if time spent less than 5 minutes
 
 ### CI
 
