@@ -21,6 +21,12 @@ class ConsoleOutput
     puts @colors.regular(" #{message} ")
   end
 
+  def success(message)
+    puts
+    print @colors.black.on_green " Yay! "
+    puts @colors.regular(" #{message} ")
+  end
+
   def info(message)
     puts
     print @colors.white.on_blue " Hey! "
@@ -29,5 +35,9 @@ class ConsoleOutput
 
   def in_progress(record)
     info("Working on task '#{record.task}' on the project '#{record.project}' for #{record.human_time}")
+  end
+
+  def completed(record)
+    success("Completed task '#{record.task}' on the project '#{record.project}' after #{record.human_time}")
   end
 end

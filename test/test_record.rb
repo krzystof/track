@@ -26,4 +26,18 @@ class RecordTest < Minitest::Test
       assert_equal 60, record.seconds
     end
   end
+
+  def test_complete_a_record
+    record = Record.new({
+      :project => "a test",
+      :task => "a task",
+      :start => "2017-05-04T13:10:25+01:00",
+    })
+
+    some_date = DateTime.parse "2017-05-04T13:11:25+01:00"
+    DateTime.stub :now, some_date do
+      record.complete
+      assert_equal some_date, record.finish
+    end
+  end
 end

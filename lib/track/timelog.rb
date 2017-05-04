@@ -7,23 +7,31 @@ class Timelog
     filepath = "#{Dir.pwd}/storage/#{file}"
     file = self.open_file(filepath)
     records_hashes = self.parse_records file.read
-    self.new filepath, file, records_hashes.map { |r| Record.from_hash(r) }
+    file.close
+    self.new filepath, records_hashes.map { |r| Record.from_hash(r) }
   end
 
-  def initialize(filepath, file, records)
+  def initialize(filepath, records)
     @filepath = filepath
-    @file = file
     @records = records
   end
 
   def append(record)
     @records.push(record)
+    commit
+  end
+
+  def save(record)
+    throw NotImplementedError
+    # todo replace the recordk
+    commit
   end
 
   def commit
+    file = self.class.open_file(@filepath)
     records_hashes = @records.map { |r| r.to_hash }
-    @file.write(JSON.generate({ :records => records_hashes}))
-    @file.close
+    file.write(JSON.generate({ :records => records_hashes}))
+    file.close
   end
 
   def has_wip?

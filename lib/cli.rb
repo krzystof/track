@@ -1,13 +1,12 @@
 require "commands/short_summary"
 require "commands/start_tracking"
-require "commands/purge"
+require "commands/stop_tracking"
 
 class Cli
   COMMANDS = [
-    Purge,
+    StopTracking,
     StartTracking,
     ShortSummary,
-    # StopTracking
     # ContinueTracking
     # SwitchTracking (between previous) -> can accept project name
     # WeeklyReport -> can accept project name
@@ -27,11 +26,10 @@ class Cli
 
   def run
     cmd = matching_command
-
     if cmd
       cmd.execute @input, @output
     else
-      @output.error "I didn't that. Can you reformulate?"
+      output.error "I didn't catch that. Can you reformulate?"
     end
   end
 

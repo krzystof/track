@@ -36,4 +36,8 @@ class Record
   def human_time
     HumanTime.new seconds
   end
+
+  def complete
+    @finish = DateTime.now
+  end
 end
