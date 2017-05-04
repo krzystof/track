@@ -26,12 +26,12 @@ class Timelog
     @file.close
   end
 
-  def wip?
+  def has_wip?
     @records.any? { |r| r.in_progress? }
   end
 
   def wip
-    @records.select { |r| r.in_progress? }.first
+    @records.find { |r| r.in_progress? }
   end
 
   private

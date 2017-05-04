@@ -1,4 +1,3 @@
-require "date"
 require "track/record"
 require "commands/base_command"
 
@@ -12,10 +11,9 @@ class StartTracking < BaseCommand
 
     project = @input.at_position 0
     task = @input.at_position 1
-    start = DateTime.now.strftime("%s").to_i
 
-    @timelog.append Record.new({ project: project, task: task, start: start })
-    @timelog.close
+    @timelog.append Record.new({ project: project, task: task })
+    @timelog.commit
 
     @output.in_progress @timelog.wip
   end

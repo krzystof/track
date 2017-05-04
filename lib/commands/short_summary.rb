@@ -15,7 +15,7 @@ class ShortSummary < BaseCommand
 
   private
   def print_wip
-    if @timelog.wip?
+    if @timelog.has_wip?
       output.in_progress @timelog.wip
     else
       output.text('Nothing in progress')

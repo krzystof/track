@@ -28,7 +28,7 @@ class ConsoleOutput
   end
 
   def in_progress(record)
-    if time < 60
+    if record.seconds < 60
       info("Now working on task #{record.task} on the project #{record.project}")
     else
       info("Working on task #{record.task} on the project #{record.project} for #{formated(time)}")
