@@ -6,6 +6,9 @@ class Report
   end
 
   def records(records)
-    # todo here!
+    p records
+    # column width
+    # print header
+    # print record
   end
 end

@@ -22,8 +22,8 @@ class Timelog
   end
 
   def save(record)
-    throw NotImplementedError
-    # todo replace the recordk
+    idx = @records.find_index record
+    @records[idx] = record
     commit
   end
 

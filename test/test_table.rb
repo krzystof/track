@@ -12,9 +12,8 @@ class TableTest < Minitest::Test
     ])
 
     expected_table = <<~END
-      Project          Task          Time
-     ---------------- ------------- ---------
-      AwesomeProject   AwesomeTask   2 hours
+    Project         Task         Time
+    AwesomeProject  AwesomeTask  2 hours
     END
     assert_equal expected_table, text_ouput.print_received
   end

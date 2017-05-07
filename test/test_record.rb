@@ -40,4 +40,20 @@ class RecordTest < Minitest::Test
       assert_equal some_date, record.finish
     end
   end
+
+  def test_record_equality
+    record_a = Record.new({
+      :project => "a test",
+      :task => "a task",
+      :start => "2017-05-04T13:10:25+01:00",
+    })
+
+    record_b = Record.new({
+      :project => "a test",
+      :task => "a task",
+      :start => "2017-05-04T13:10:25+01:00",
+    })
+
+    assert_equal record_a, record_b
+  end
 end

@@ -28,8 +28,4 @@ class TimelogTest < Minitest::Test
     assert_instance_of DateTime, wip.start
     assert_nil wip.finish
   end
-
-  def test_can_save_an_updated_record
-    skip
-  end
 end

@@ -40,4 +40,8 @@ class Record
   def complete
     @finish = DateTime.now
   end
+
+  def == other
+    project == other.project && task == other.task && start == other.start
+  end
 end
