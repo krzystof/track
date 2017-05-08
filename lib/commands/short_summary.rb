@@ -6,14 +6,21 @@ class ShortSummary < BaseCommand
   end
 
   def execute
-    # if nothing previously
-    output.text('No previous entries')
-
-    # if nothing in progress
+    print_last_three_records
     print_wip
   end
 
   private
+  def print_last_three_records
+    last_three_records = @timelog.last 3
+
+    if last_three_records.empty?
+      output.text "Nothing previously recorded!"
+    else
+      ouptut.records last_three_records
+    end
+  end
+
   def print_wip
     if @timelog.has_wip?
       output.in_progress @timelog.wip

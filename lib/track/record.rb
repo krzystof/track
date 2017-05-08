@@ -44,4 +44,8 @@ class Record
   def == other
     project == other.project && task == other.task && start == other.start
   end
+
+  def to_row
+    [project, task, human_time.to_s]
+  end
 end

@@ -5,9 +5,9 @@ require "report"
 
 class TableTest < Minitest::Test
   def test_format_one_record
-    text_ouput = StringOutput.new
+    text_output = StringOutput.new
     record = Record.new :project => "AwesomeProject", :task => "AwesomeTask", :start => "2017-05-05 14:00:00", :finish => "2017-05-05 16:00:00"
-    report = Report.new(text_ouput).records([
+    report = Report.new(text_output).records([
       record
     ])
 
@@ -15,6 +15,6 @@ class TableTest < Minitest::Test
     Project         Task         Time
     AwesomeProject  AwesomeTask  2 hours
     END
-    assert_equal expected_table, text_ouput.print_received
+    assert_equal expected_table, text_output.print_received
   end
 end
