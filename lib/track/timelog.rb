@@ -4,7 +4,7 @@ class Timelog
   RECORDS_FILE = "timelog.json"
 
   def self.open(file = RECORDS_FILE)
-    filepath = "#{Dir.pwd}/storage/#{file}"
+    filepath = "#{File.dirname(__FILE__)}/../../storage/#{file}"
     file = self.open_file(filepath)
     records_hashes = self.parse_records file.read
     file.close
