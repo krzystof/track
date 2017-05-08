@@ -8,15 +8,13 @@ class Report
   end
 
   def records(records)
-    # column width
+    rows = [HEADER].concat records.map { |r| r.to_row }
 
+    @col_width = rows.map { |r| r.map { |word| word.length } }.transpose.map { |lengths| lengths.max}
+    # p rows
+    formatted_rows = rows.map { |row| format_row(row) }
 
-
-
-    # col_width = HEADER.map { |h| h.length}
-
-    # rows = records.map { |r| r.to_row }
-
+    output.many formatted_rows
     # transpose!
 
     # p rows
@@ -24,6 +22,19 @@ class Report
     # print header
     # print record
     print_header
+  end
+
+  private
+  def format_row(row)
+    row.map.with_index { |col, idx| pad_column(idx, col) }.join "  "
+  end
+
+  def pad_column(idx, col)
+    if col.length == @col_width[idx]
+      col
+    else
+      col.ljust col.length - @col_width[idx]
+    end
   end
 
   def print_header
