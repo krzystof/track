@@ -8,6 +8,7 @@ class Report
   end
 
   def for_records(records)
+    return output.says_nothing_recorded if records.empty?
     rows = generate_rows(records)
     calculate_column_widths(rows)
     output.many rows.map { |row| format_row(row) }

@@ -59,6 +59,6 @@ class RecordTest < Minitest::Test
 
   def test_default_task_name_on_a_record
     record = Record.new({ :project => "a test", })
-    assert_equal "various", record.task
+    assert_equal "-", record.task
   end
 end

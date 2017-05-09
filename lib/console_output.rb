@@ -5,6 +5,10 @@ class ConsoleOutput
     @colors = Colors.new
   end
 
+  def says_nothing_recorded
+    output.text "Nothing previously recorded!"
+  end
+
   def text(content)
     puts content
   end

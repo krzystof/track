@@ -1,8 +1,8 @@
 class StopTracking < BaseCommand
-  STOP = "stop"
+  CMD_NAME = "stop"
 
   def self.matches?(input)
-    input.at_position(0) == STOP
+    input.at_position(0) == CMD_NAME
   end
 
   def execute

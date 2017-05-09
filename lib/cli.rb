@@ -1,10 +1,12 @@
 require "commands/short_summary"
+require "commands/last_records"
 require "commands/start_tracking"
 require "commands/stop_tracking"
 
 class Cli
   COMMANDS = [
     StopTracking,
+    LastRecords,
     StartTracking,
     ShortSummary,
     # ContinueTracking

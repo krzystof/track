@@ -13,12 +13,7 @@ class ShortSummary < BaseCommand
 
   private
   def print_last_three_records
-    last_three_records = @timelog.last(3)
-    if last_three_records.empty?
-      output.text "Nothing previously recorded!"
-    else
-      Report.new(output).for_records last_three_records
-    end
+    Report.new(output).for_records @timelog.last(3)
   end
 
   def print_wip
