@@ -42,12 +42,16 @@ class Timelog
     @records.find { |r| r.in_progress? }
   end
 
+  def last(count = 1)
+    @records.reverse.take count
+  end
+
   private
   def self.parse_records(content)
     if content.empty?
       []
     else
-      JSON.parse(content)["records"]
+      JSON.parse(content)["records"].sort_by { :start }
     end
   end
 

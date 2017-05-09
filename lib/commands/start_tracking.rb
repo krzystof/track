@@ -7,7 +7,12 @@ class StartTracking < BaseCommand
   end
 
   def execute
-    # @todo if same as current, do nothing
+    if @timelog.has_wip?
+      record = @timelog.wip
+      record.complete
+      @timelog.save record
+      output.completed record
+    end
 
     project = @input.at_position 0
     task = @input.at_position 1

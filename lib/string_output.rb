@@ -11,7 +11,7 @@ class StringOutput
     @lines << lines
   end
 
-  def print_received
+  def to_s
     @lines.join "\n"
   end
 end

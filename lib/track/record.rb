@@ -6,7 +6,7 @@ class Record
 
   def initialize(params)
     @project = params[:project]
-    @task = params[:task] || "miscellaenous"
+    @task = params[:task] || "various"
     @start = params[:start] ? DateTime.parse(params[:start]) : DateTime.now
     @finish = params[:finish] != nil ? DateTime.parse(params[:finish]) : nil
   end

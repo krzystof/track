@@ -1,4 +1,5 @@
 require "commands/base_command"
+require "report"
 
 class ShortSummary < BaseCommand
   def self.matches?(input)
@@ -12,12 +13,11 @@ class ShortSummary < BaseCommand
 
   private
   def print_last_three_records
-    last_three_records = @timelog.last 3
-
+    last_three_records = @timelog.last(3)
     if last_three_records.empty?
       output.text "Nothing previously recorded!"
     else
-      ouptut.records last_three_records
+      Report.new(output).for_records last_three_records
     end
   end
 

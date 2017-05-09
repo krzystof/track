@@ -1,43 +1,32 @@
 class Report
   attr_reader :output
 
-  HEADER = ["Project", "Task", "Time"]
+  HEADER = ["#", "Project", "Task", "Time"]
 
   def initialize(output)
     @output = output
   end
 
-  def records(records)
-    rows = [HEADER].concat records.map { |r| r.to_row }
-
-    @col_width = rows.map { |r| r.map { |word| word.length } }.transpose.map { |lengths| lengths.max}
-    # p rows
-    formatted_rows = rows.map { |row| format_row(row) }
-
-    output.many formatted_rows
-    # transpose!
-
-    # p rows
-    # p col_width.inspect
-    # print header
-    # print record
-    print_header
+  def for_records(records)
+    rows = generate_rows(records)
+    calculate_column_widths(rows)
+    output.many rows.map { |row| format_row(row) }
   end
 
   private
+  def generate_rows(records)
+    [HEADER].concat records.map.with_index { |record, idx| [idx.next.to_s] + record.to_row }
+  end
+
+  def calculate_column_widths(rows)
+    @col_width = rows.map { |r| r.map { |word| word.length } }.transpose.map { |lengths| lengths.max}
+  end
+
   def format_row(row)
     row.map.with_index { |col, idx| pad_column(idx, col) }.join "  "
   end
 
   def pad_column(idx, col)
-    if col.length == @col_width[idx]
-      col
-    else
-      col.ljust col.length - @col_width[idx]
-    end
-  end
-
-  def print_header
-    output.text HEADER.join "  "
+    col.ljust @col_width[idx]
   end
 end

@@ -9,6 +9,11 @@ class ConsoleOutput
     puts content
   end
 
+  def many(lines)
+    lines.each { |l| puts l }
+    puts
+  end
+
   def error(message)
     puts
     print @colors.white.on_red " Crap! "
