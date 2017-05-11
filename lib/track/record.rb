@@ -1,5 +1,6 @@
 require "date"
 require "track/human_time"
+require "track/time_ago"
 
 class Record
   attr_accessor :project, :task, :start, :finish
@@ -33,10 +34,6 @@ class Record
     finish.strftime("%s").to_i - @start.strftime("%s").to_i
   end
 
-  def human_time
-    HumanTime.new seconds
-  end
-
   def complete
     @finish = DateTime.now
   end
@@ -46,6 +43,14 @@ class Record
   end
 
   def to_row
-    [project, task, human_time.to_s]
+    [time_ago.to_s, project, task, human_time.to_s]
+  end
+
+  def human_time
+    HumanTime.new seconds
+  end
+
+  def time_ago
+    TimeAgo.new finish
   end
 end

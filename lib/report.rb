@@ -1,7 +1,7 @@
 class Report
   attr_reader :output
 
-  HEADER = ["#", "Project", "Task", "Time"]
+  HEADER = ["Date", "Project", "Task", "Time"]
 
   def initialize(output)
     @output = output
@@ -16,7 +16,7 @@ class Report
 
   private
   def generate_rows(records)
-    [HEADER].concat records.map.with_index { |record, idx| [idx.next.to_s] + record.to_row }
+    [HEADER].concat records.map { |record| record.to_row }
   end
 
   def calculate_column_widths(rows)

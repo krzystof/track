@@ -43,7 +43,7 @@ class Timelog
   end
 
   def last(count = 1)
-    @records.reverse.take count
+    @records.select { |r| not r.in_progress? }.last(count)
   end
 
   private
