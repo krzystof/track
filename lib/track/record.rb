@@ -53,4 +53,9 @@ class Record
   def time_ago
     TimeAgo.new finish
   end
+
+  def finished_in?(from, to)
+    return false if in_progress?
+    finish >= from && finish <= to
+  end
 end

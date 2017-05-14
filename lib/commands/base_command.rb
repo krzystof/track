@@ -1,7 +1,7 @@
 require "track/timelog"
 
 class BaseCommand
-  attr_reader :input, :output
+  attr_reader :input, :output, :timelog
 
   def initialize(input, output)
     @input = input

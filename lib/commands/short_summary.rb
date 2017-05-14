@@ -1,5 +1,5 @@
 require "commands/base_command"
-require "report"
+require "track/records_list"
 
 class ShortSummary < BaseCommand
   def self.matches?(input)
@@ -7,16 +7,9 @@ class ShortSummary < BaseCommand
   end
 
   def execute
-    print_last_three_records
-    print_wip
-  end
+    records = @timelog.last(3)
+    Table.new(output).headers("Date", "Project", "Task", "Time").rows(RecordsList.new(records).to_rows)
 
-  private
-  def print_last_three_records
-    Report.new(output).for_records @timelog.last(3)
-  end
-
-  def print_wip
     if @timelog.has_wip?
       output.in_progress @timelog.wip
     else

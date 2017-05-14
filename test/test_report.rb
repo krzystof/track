@@ -1,7 +1,8 @@
 require "minitest/autorun"
 require "minitest/pride"
 require "string_output"
-require "report"
+require "table"
+require "track/records_list"
 
 class ReportTest < Minitest::Test
   def test_format_one_record
@@ -20,7 +21,8 @@ class ReportTest < Minitest::Test
 
     now = DateTime.parse("2017-05-05 18:00:00")
     DateTime.stub :now, now do
-      Report.new(string_output).for_records([record])
+      Table.new(string_output).headers("Date", "Project", "Task", "Time").rows(RecordsList.new([record]).to_rows)
+
       assert_equal expected_table, string_output.to_s
     end
   end

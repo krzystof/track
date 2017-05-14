@@ -1,22 +1,31 @@
-class Report
+class Table
   attr_reader :output
-
-  HEADER = ["Date", "Project", "Task", "Time"]
 
   def initialize(output)
     @output = output
   end
 
-  def for_records(records)
-    return output.says_nothing_recorded if records.empty?
-    rows = generate_rows(records)
-    calculate_column_widths(rows)
-    output.many rows.map { |row| format_row(row) }
+  def headers(*headers)
+    @headers = headers
+    self
+  end
+
+  def rows(rows)
+    @rows = rows
+    to_table
   end
 
   private
-  def generate_rows(records)
-    [HEADER].concat records.map { |record| record.to_row }
+  def to_table
+    puts
+    return output.says_nothing_recorded if @rows.empty?
+    all_rows = generate_rows
+    calculate_column_widths(all_rows)
+    output.many all_rows.map { |row| format_row(row) }
+  end
+
+  def generate_rows
+    [@headers].concat @rows
   end
 
   def calculate_column_widths(rows)

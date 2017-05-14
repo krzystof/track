@@ -10,9 +10,10 @@
 
 ## Todo
 
+- `track week` show the summary + totals for the week
+
 - `track today` show the summary + totals for today
 - `track days <count>` show the totals for the last count days
-- `track week` show the summary + totals for the week
 - `track weeks <count>` show the totals for the last weeks
 - add -p or --project to scope the action (continue, switch, last, weekly)
 - `track switch` switch to the previous entry with a different task
@@ -25,6 +26,10 @@
 #### To think about
 - ask for confirmation?
 - // todo: `track continue <#>` continue the record with the given number???
+
+## Refactor!
+- use different drivers in timelog (json, sqlite, ...)
+- todo: test cumulative report
 
 ### CI
 

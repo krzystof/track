@@ -42,6 +42,10 @@ class Timelog
     @records.find { |r| r.in_progress? }
   end
 
+  def between(from, to)
+    @records.select { |r| r.finished_in?(from, to) }
+  end
+
   def last(count = 1)
     @records.select { |r| not r.in_progress? }.last(count)
   end
