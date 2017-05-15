@@ -2,6 +2,7 @@ require "json"
 
 class Timelog
   RECORDS_FILE = "timelog.json"
+  MIN_IN_SECONDS = 5 * 60
 
   def self.open(file = RECORDS_FILE)
     filepath = "#{File.dirname(__FILE__)}/../../storage/#{file}"
@@ -29,7 +30,7 @@ class Timelog
 
   def commit
     file = self.class.open_file(@filepath)
-    records_hashes = @records.map { |r| r.to_hash }
+    records_hashes = @records.select { |r| r.seconds > MIN_IN_SECONDS }.map { |r| r.to_hash }
     file.write(JSON.generate({ :records => records_hashes}))
     file.close
   end

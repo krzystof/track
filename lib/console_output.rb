@@ -6,7 +6,7 @@ class ConsoleOutput
   end
 
   def says_nothing_recorded
-    output.text "Nothing previously recorded!"
+    text "Nothing recorded in there!"
   end
 
   def text(content)

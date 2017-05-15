@@ -7,10 +7,9 @@
 - `track stop` stop the timer
 - `track <project> <task>` stops the previous timer and start the new task
 - `track last <count>` show last x records (5 by default)
+- `track week` show the summary + totals for the week
 
 ## Todo
-
-- `track week` show the summary + totals for the week
 
 - `track today` show the summary + totals for today
 - `track days <count>` show the totals for the last count days
@@ -22,6 +21,7 @@
 - `track help` show the commands
 - when there is no task, write "Finish working on project" directly
 - if working on no specific task, don't print it in the output (eg "working on task '-' = is ugly")
+- ask for confirmation when tracking a project that does not exist
 
 #### To think about
 - ask for confirmation?
