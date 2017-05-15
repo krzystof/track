@@ -23,6 +23,7 @@ class Timelog
   end
 
   def save(record)
+    return if record.seconds < MIN_IN_SECONDS
     idx = @records.find_index record
     @records[idx] = record
     commit
@@ -30,7 +31,7 @@ class Timelog
 
   def commit
     file = self.class.open_file(@filepath)
-    records_hashes = @records.select { |r| r.seconds > MIN_IN_SECONDS }.map { |r| r.to_hash }
+    records_hashes = @records.map { |r| r.to_hash }
     file.write(JSON.generate({ :records => records_hashes}))
     file.close
   end
@@ -41,6 +42,10 @@ class Timelog
 
   def wip
     @records.find { |r| r.in_progress? }
+  end
+
+  def contains_project?(project)
+    @records.any? { |record| record.project == project }
   end
 
   def between(from, to)

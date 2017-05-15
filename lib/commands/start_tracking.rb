@@ -9,6 +9,8 @@ class StartTracking < BaseCommand
   def execute
     if @timelog.has_wip?
       record = @timelog.wip
+      output.question "Finish work on #{record.project}?"
+      return if not input.confirmed?
       record.complete
       @timelog.save record
       output.completed record
@@ -16,6 +18,11 @@ class StartTracking < BaseCommand
 
     project = @input.at_position 0
     task = @input.at_position 1
+
+    if not @timelog.contains_project?(project)
+      output.question "The project #{project} does not exist yet. You positive?"
+      return if not input.confirmed?
+    end
 
     @timelog.append Record.new({ :project => project, :task => task })
     @timelog.commit

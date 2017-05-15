@@ -11,7 +11,7 @@ class CumulativeTimes
       .map { |records_per_project| format_row(records_per_project) }
       .sort_by { |row| row[1] }
       .reverse
-      .concat(total_row)
+      .push(total_row)
   end
 
   private
@@ -22,7 +22,7 @@ class CumulativeTimes
   end
 
   def total_row
-    [["TOTAL", HumanTime.new(total).to_s]]
+    ["TOTAL", HumanTime.new(total).to_s]
   end
 
   def total

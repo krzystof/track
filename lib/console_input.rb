@@ -1,6 +1,4 @@
 class ConsoleInput
-  @args
-
   def initialize(args)
     @args = args
   end
@@ -21,7 +19,8 @@ class ConsoleInput
     @args[pos]
   end
 
-  def read
-    gets
+  def confirmed?
+      answer = STDIN.gets.chomp
+      return true if ["y", "yes"].include? answer.downcase
   end
 end

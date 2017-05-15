@@ -24,10 +24,10 @@ class ConsoleOutput
     puts @colors.regular(" #{message} ")
   end
 
-  def confirm(message)
+  def question(question)
     puts
     print @colors.white.on_blue " Sure? "
-    puts @colors.regular(" #{message} ")
+    puts @colors.regular(" #{question} ")
   end
 
   def success(message)
