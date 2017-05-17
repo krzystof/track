@@ -1,4 +1,5 @@
-require "track/timelog"
+require "track/json_timelog"
+require "track/sqlite_timelog"
 
 class BaseCommand
   attr_reader :input, :output, :timelog
@@ -6,7 +7,7 @@ class BaseCommand
   def initialize(input, output)
     @input = input
     @output = output
-    @timelog = Timelog.open
+    @timelog = SqliteTimelog.new
   end
 
   def self.execute(input, output)

@@ -11,6 +11,7 @@
 
 ## Todo
 
+- order by total time: it's using the string instead of the length in seconds
 - sqlite driver
 - discard a record if time spent less than 5 minutes
 - `track <cmd> -p <project>` or `--<project>` filter `last`, `week` command on the given project

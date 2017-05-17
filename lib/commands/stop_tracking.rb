@@ -1,4 +1,5 @@
 class StopTracking < BaseCommand
+  MIN_IN_SECONDS = 5 * 60
   CMD_NAME = "stop"
 
   def self.matches?(input)
@@ -9,7 +10,7 @@ class StopTracking < BaseCommand
     if @timelog.has_wip?
       record = @timelog.wip
       record.complete
-      @timelog.save record
+      @timelog.save record if record.seconds > MIN_IN_SECONDS
       output.completed record
     end
     output.text "Not working on anything right now"

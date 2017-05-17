@@ -9,7 +9,7 @@ class Record
     @project = params[:project]
     @task = params[:task] || "-"
     @start = params[:start] ? DateTime.parse(params[:start]) : DateTime.now
-    @finish = params[:finish] != nil ? DateTime.parse(params[:finish]) : nil
+    @finish = params[:finish].to_s != '' ? DateTime.parse(params[:finish]) : nil
   end
 
   def to_hash
@@ -17,7 +17,7 @@ class Record
       :project => @project,
       :task => @task,
       :start => @start.to_s,
-      :finish => @finish
+      :finish => @finish.to_s
     }
   end
 

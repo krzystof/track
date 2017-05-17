@@ -16,7 +16,7 @@ class WeeklyReport < BaseCommand
 
     # print all of this week records
 
-    puts
+    # puts
     output.text "Time spent by project between the #{beginning_of_week.to_date} and the #{end_of_week.to_date}:"
     Table.new(output).headers("Project", "Time spent").rows(CumulativeTimes.new(records).to_rows)
   end

@@ -2,6 +2,7 @@ require "minitest/autorun"
 require "minitest/pride"
 require "track/record"
 require "track/timelog"
+require "track/json_driver"
 
 class TimelogTest < Minitest::Test
   TESTLOG = "testlog.json"
@@ -16,9 +17,8 @@ class TimelogTest < Minitest::Test
   def test_can_save_a_record_on_an_empty_file
     record = Record.new({ :project => "a project", :task => "a task" })
 
-    t = Timelog.open(TESTLOG)
-    t.append record
-    t.commit
+    t = Timelog.new JsonDriver.new(TESTLOG)
+    t.create record
 
     wip = Timelog.open(TESTLOG).wip
 
