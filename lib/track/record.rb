@@ -39,6 +39,7 @@ class Record
   end
 
   def == other
+    return false if other == nil
     project == other.project && task == other.task && start.to_s == other.start.to_s
   end
 

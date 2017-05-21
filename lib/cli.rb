@@ -2,12 +2,12 @@ require "commands/short_summary"
 require "commands/last_records"
 require "commands/start_tracking"
 require "commands/stop_tracking"
-require "commands/weekly_report"
+require "commands/week"
 require "table"
 
 class Cli
   COMMANDS = [
-    WeeklyReport,
+    Week,
     StopTracking,
     LastRecords,
     StartTracking,

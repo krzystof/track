@@ -4,10 +4,10 @@ require "track/sqlite_timelog"
 class BaseCommand
   attr_reader :input, :output, :timelog
 
-  def initialize(input, output)
+  def initialize(input, output, timelog = nil)
     @input = input
     @output = output
-    @timelog = SqliteTimelog.new
+    @timelog = timelog || SqliteTimelog.new
   end
 
   def self.execute(input, output)
