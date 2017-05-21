@@ -8,17 +8,21 @@ class CumulativeTimes
   def to_rows
     records
       .group_by { |record| record.project }
-      .map { |records_per_project| format_row(records_per_project) }
+      .map { |records_per_project| aggregate_row(records_per_project) }
       .sort_by { |row| row[1] }
-      .reverse
+      .map { |row| to_readable(row) }
       .push(total_row)
   end
 
   private
-  def format_row(records_per_project)
+  def aggregate_row(records_per_project)
     project = records_per_project.first
     total_time_in_s = records_per_project.last.inject(0) { |sum, record| sum + record.seconds }
-    [project, HumanTime.new(total_time_in_s).to_s]
+    [project, total_time_in_s]
+  end
+
+  def to_readable(row)
+    [row[0], HumanTime.new(row[1]).to_s]
   end
 
   def total_row

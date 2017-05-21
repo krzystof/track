@@ -1,8 +1,8 @@
 class InMemoryTimelog
   attr_reader :records
 
-  def initialize
-    @records = []
+  def initialize(records = [])
+    @records = records
   end
 
   def save(record)

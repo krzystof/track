@@ -1,4 +1,3 @@
-require "track/json_timelog"
 require "track/sqlite_timelog"
 
 class BaseCommand

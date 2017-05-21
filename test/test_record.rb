@@ -33,7 +33,6 @@ class TestRecord < Minitest::Test
       :task => "a task",
       :start => DateTime.parse("2017-05-04T13:10:25+01:00"),
     })
-
     some_date = DateTime.parse "2017-05-04T13:11:25+01:00"
     DateTime.stub :now, some_date do
       record.complete
