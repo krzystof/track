@@ -1,14 +1,14 @@
 require "minitest/autorun"
 require "minitest/pride"
+require "track/record"
 
-
-class RecordTest < Minitest::Test
+class TestRecord < Minitest::Test
   def test_completed_has_a_length_in_seconds
     record = Record.new({
       :project => "a test",
       :task => "a task",
-      :start => "2017-05-04T13:10:25+01:00",
-      :finish => "2017-05-04T13:10:55+01:00"
+      :start => DateTime.parse("2017-05-04T13:10:25+01:00"),
+      :finish => DateTime.parse("2017-05-04T13:10:55+01:00"),
     })
 
     assert_equal 30, record.seconds
@@ -18,7 +18,7 @@ class RecordTest < Minitest::Test
     record = Record.new({
       :project => "a test",
       :task => "a task",
-      :start => "2017-05-04T13:10:25+01:00",
+      :start => DateTime.parse("2017-05-04T13:10:25+01:00"),
     })
 
     some_date = DateTime.parse "2017-05-04T13:11:25+01:00"
@@ -31,7 +31,7 @@ class RecordTest < Minitest::Test
     record = Record.new({
       :project => "a test",
       :task => "a task",
-      :start => "2017-05-04T13:10:25+01:00",
+      :start => DateTime.parse("2017-05-04T13:10:25+01:00"),
     })
 
     some_date = DateTime.parse "2017-05-04T13:11:25+01:00"
@@ -45,7 +45,7 @@ class RecordTest < Minitest::Test
     record_a = Record.new({
       :project => "a test",
       :task => "a task",
-      :start => "2017-05-04T13:10:25+01:00",
+      :start => DateTime.parse("2017-05-04T13:10:25+01:00"),
     })
 
     record_b = Record.new({

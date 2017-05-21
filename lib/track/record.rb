@@ -8,8 +8,8 @@ class Record
   def initialize(params)
     @project = params[:project]
     @task = params[:task] || "-"
-    @start = params[:start] ? DateTime.parse(params[:start]) : DateTime.now
-    @finish = params[:finish].to_s != '' ? DateTime.parse(params[:finish]) : nil
+    @start = params[:start] || DateTime.now
+    @finish = params[:finish].to_s != '' ? params[:finish] : nil
   end
 
   def to_hash
@@ -17,7 +17,7 @@ class Record
       :project => @project,
       :task => @task,
       :start => @start.to_s,
-      :finish => @finish.to_s
+      :finish => @finish.to_s,
     }
   end
 
@@ -39,7 +39,7 @@ class Record
   end
 
   def == other
-    project == other.project && task == other.task && start == other.start
+    project == other.project && task == other.task && start.to_s == other.start.to_s
   end
 
   def to_row

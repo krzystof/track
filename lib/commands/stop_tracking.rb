@@ -10,8 +10,13 @@ class StopTracking < BaseCommand
     if @timelog.has_wip?
       record = @timelog.wip
       record.complete
-      @timelog.save record if record.seconds > MIN_IN_SECONDS
-      output.completed record
+      if record.seconds > MIN_IN_SECONDS
+        @timelog.save record
+        output.completed record
+      else
+        @timelog.remove record
+        output.info "Discarding that cause you did't work a lot on it"
+      end
     end
     output.text "Not working on anything right now"
   end

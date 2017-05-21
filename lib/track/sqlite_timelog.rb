@@ -10,12 +10,16 @@ class SqliteTimelog
     @db = SQLite3::Database.new db_path
   end
 
-  def create(record)
-    db.execute "insert into records values (?, ?, ?, ?)", record.to_hash.values
+  def save(record)
+    if no_record_that_start record.start
+      db.execute "insert into records values (?, ?, ?, ?)", record.to_hash.values
+    else
+      db.execute "update records set finish = ? where start = ?", [record.finish.to_s, record.start.to_s]
+    end
   end
 
-  def save(record)
-    db.execute "update records set finish = ? where start = ?", [record.finish.to_s, record.start.to_s]
+  def remove(record)
+    db.execute "delete from records where start = ?", [record.start.to_s]
   end
 
   def has_wip?
@@ -29,17 +33,21 @@ class SqliteTimelog
   end
 
   def contains_project?(project)
-    rows = db.execute "select count(*) from records where project == ?", project
+    rows = db.execute "select * from records where project = ?", project
     rows.count > 0
   end
 
   def between(from, to)
-    # records.select { |r| r.finished_in?(from, to) }
+    db.execute "select * from records where finish > ? and finish < ?", [from.to_s, to.to_s]
   end
 
   def last(count = 1)
-    dbrows = db.execute "select * from records where finish is not null order by start desc limit ?", count
+    dbrows = db.execute "select * from records where finish != '' order by start desc limit ?", count
     dbrows.reverse.map { |row| to_record(row) }
+  end
+
+  def migrate
+    db.execute "create table records (project varchar(50), task varchar(50), start datetime, finish datetime)"
   end
 
   private
@@ -47,8 +55,13 @@ class SqliteTimelog
     Record.new({
       :project => row[0],
       :task => row[1],
-      :start => row[2],
-      :finish => row[3],
+      :start => DateTime.parse(row[2]),
+      :finish => row[3] != '' ? DateTime.parse(row[3]) : nil,
     })
+  end
+
+  def no_record_that_start(start)
+    rows = db.execute "select * from records where start = ?", start.to_s
+    rows.count == 0
   end
 end

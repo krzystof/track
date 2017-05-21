@@ -10,8 +10,8 @@ class ReportTest < Minitest::Test
     record = Record.new(
       :project => "AwesomeProject",
       :task => "AwesomeTask",
-      :start => "2017-05-05 14:00:00",
-      :finish => "2017-05-05 16:00:00"
+      :start => DateTime.parse("2017-05-05 14:00:00"),
+      :finish => DateTime.parse("2017-05-05 16:00:00"),
     )
 
     expected_table = [
