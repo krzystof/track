@@ -40,6 +40,7 @@ class ConsoleOutput
     puts
     print @colors.white.on_blue " Hey! "
     puts @colors.regular(" #{message} ")
+    puts
   end
 
   def in_progress(record)

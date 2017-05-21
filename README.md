@@ -11,6 +11,7 @@
 
 ## Todo
 
+- order by start desc when getting last orders...
 - order by total time: it's using the string instead of the length in seconds
 - sqlite driver
 - discard a record if time spent less than 5 minutes

@@ -38,8 +38,8 @@ class SqliteTimelog
   end
 
   def last(count = 1)
-    dbrows = db.execute "select * from records where finish is not null limit ?", count
-    dbrows.map { |row| to_record(row) }
+    dbrows = db.execute "select * from records where finish is not null order by start desc limit ?", count
+    dbrows.reverse.map { |row| to_record(row) }
   end
 
   private
