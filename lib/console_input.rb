@@ -15,8 +15,12 @@ class ConsoleInput
     at_position 0
   end
 
-  def at_position(pos)
-    @args[pos]
+  def second_or(default)
+    at_position 1 || default
+  end
+
+  def at_position(pos, default = nil)
+    @args[pos] || default
   end
 
   def confirmed?

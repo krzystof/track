@@ -45,19 +45,16 @@ module TestTimelogRole
 
     @timelog.save Record.new({
       :project => "prjct",
-      :start => DateTime.new(now.year, now.month, now.day, 14, 0, 0, 0),
-      :finish => DateTime.new(now.year, now.month, now.day, 15, 0, 0, 0),
+      :start => DateTime.new(now.year, now.month, now.day - 9),
+      :finish => DateTime.new(now.year, now.month, now.day - 8),
     })
     @timelog.save Record.new({
       :project => "prjct",
-      :start => DateTime.new(now.year, now.month, now.day, 16, 0, 0, 0),
-      :finish => DateTime.new(now.year, now.month, now.day, 17, 0, 0, 0),
+      :start => DateTime.new(now.year, now.month, now.day - 1),
+      :finish => DateTime.new(now.year, now.month, now.day),
     })
 
-    assert_equal 1, @timelog.between(
-      DateTime.new(now.year, now.month, now.day, 16, 30, 0),
-      DateTime.new(now.year, now.month, now.day, 17, 30, 0),
-    ).count
+    assert_equal 1, @timelog.finish_during(Week.of(now)).count
   end
 
   private

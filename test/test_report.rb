@@ -22,7 +22,6 @@ class ReportTest < Minitest::Test
     now = DateTime.parse("2017-05-05 18:00:00")
     DateTime.stub :now, now do
       Table.new(string_output).headers("Date", "Project", "Task", "Time").rows(RecordsList.new([record]).to_rows)
-
       assert_equal expected_table, string_output.to_s
     end
   end

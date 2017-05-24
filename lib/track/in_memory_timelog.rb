@@ -26,8 +26,8 @@ class InMemoryTimelog
     records.any? { |record| record.project == project }
   end
 
-  def between(from, to)
-    records.select { |r| r.finished_in?(from, to) }
+  def finish_during(timeframe)
+    between(timeframe.beginning, timeframe.end)
   end
 
   def last(count = 1)
@@ -41,5 +41,9 @@ class InMemoryTimelog
   private
   def contains_record?(record)
     records.find { |r| r == record }
+  end
+
+  def between(from, to)
+    records.select { |r| r.finished_in?(from, to) }
   end
 end

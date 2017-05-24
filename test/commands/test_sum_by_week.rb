@@ -1,9 +1,11 @@
 require "minitest/autorun"
 require "minitest/pride"
-require "commands/week"
+require "commands/sum_by_week"
+require "console_input"
 
-class TestWeek < Minitest::Test
+class TestSumByWeek < Minitest::Test
   def test_show_records_for_the_week
+    input = ConsoleInput.new("week")
     output = StringOutput.new
     timelog = InMemoryTimelog.new([
       Record.new({
@@ -22,12 +24,13 @@ class TestWeek < Minitest::Test
     ].join("\n")
 
     DateTime.stub :now, DateTime.parse("2017-01-01 19:00:00") do
-      Week.new(nil, output, timelog).execute
+      SumByWeek.new(input, output, timelog).execute
       assert_equal expected, output.to_s
     end
   end
 
   def test_sort_by_max
+    input = ConsoleInput.new("week")
     output = StringOutput.new
     timelog = InMemoryTimelog.new([
       Record.new({
@@ -53,7 +56,7 @@ class TestWeek < Minitest::Test
     ].join("\n")
 
     DateTime.stub :now, DateTime.parse("2017-01-01 19:00:00") do
-      Week.new(nil, output, timelog).execute
+      SumByWeek.new(input, output, timelog).execute
       assert_equal expected, output.to_s
     end
   end

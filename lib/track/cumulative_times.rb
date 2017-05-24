@@ -26,7 +26,7 @@ class CumulativeTimes
   end
 
   def total_row
-    ["TOTAL", HumanTime.new(total).to_s]
+    ["Total", HumanTime.new(total).to_s]
   end
 
   def total

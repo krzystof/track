@@ -9,6 +9,10 @@ class LastRecords < BaseCommand
 
   def execute
     how_many = input.at_position(1).to_i || 5
-    Report.new(output).for_records @timelog.last(how_many)
+    records = @timelog.last(how_many)
+
+    Table.new(output)
+      .headers("Date", "Project", "Task", "Time")
+      .rows(RecordsList.new(records).to_rows)
   end
 end

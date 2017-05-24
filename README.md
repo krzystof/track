@@ -11,15 +11,18 @@
 
 ## Todo
 
+- `track weeks <count>` show the totals for the last weeks
+- `track continue` add a new record based on the previous record
+- `track all` show the sum per project of all time
+- `track all --monthly` show the sum per project of all time per month
+- `track all --weekly` show the sum per project of all time per week
+- `track all --project <project>` show the sum of a project
 - trk week when its empty
 - order by start desc when getting last orders
-- discard a record if time spent less than 5 minutes
 - `track <cmd> -p <project>` or `--<project>` filter `last`, `week` command on the given project
 - `track today` show the summary + totals for today
 - `track days <count>` show the totals for the last count days
-- `track weeks <count>` show the totals for the last weeks
 - `track switch` switch to the previous entry with a different task
-- `track continue` add a new record based on the previous record
 - `track help` show the commands
 - when there is no task, write "Finish working on project" directly
 - if working on no specific task, don't print it in the output (eg "working on task '-' = is ugly")

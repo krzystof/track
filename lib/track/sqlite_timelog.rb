@@ -37,9 +37,8 @@ class SqliteTimelog
     rows.count > 0
   end
 
-  def between(from, to)
-    dbrows = db.execute "select * from records where finish > ? and finish < ?", [from.to_s, to.to_s]
-    dbrows.map { |row| to_record(row) }
+  def finish_during(timeframe)
+    between(timeframe.beginning, timeframe.end)
   end
 
   def last(count = 1)
@@ -65,4 +64,10 @@ class SqliteTimelog
     rows = db.execute "select * from records where start = ?", start.to_s
     rows.count == 0
   end
+
+  def between(from, to)
+    dbrows = db.execute "select * from records where finish > ? and finish < ?", [from.to_s, to.to_s]
+    dbrows.map { |row| to_record(row) }
+  end
+
 end

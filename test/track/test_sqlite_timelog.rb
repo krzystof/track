@@ -7,7 +7,7 @@ class TestSqliteTimelog < Minitest::Test
   include TestTimelogRole
 
   def setup
-    @timelog = SqliteTimelog.new("test_timelog.sqlite")
+    @timelog = SqliteTimelog.new(":memory:")
     @timelog.migrate
   end
 

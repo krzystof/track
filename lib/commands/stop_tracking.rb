@@ -15,7 +15,7 @@ class StopTracking < BaseCommand
         output.completed record
       else
         @timelog.remove record
-        output.info "Discarding that cause you did't work a lot on it"
+        output.info "Discarding that one 'cause you didn't work a lot on it"
       end
     end
     output.text "Not working on anything right now"
