@@ -24,7 +24,7 @@ class StartTracking < BaseCommand
       return if not input.confirmed?
     end
 
-    @timelog.create Record.new({ :project => project, :task => task })
+    @timelog.save Record.new({ :project => project, :task => task, :start => DateTime.now })
 
     @output.in_progress @timelog.wip
   end

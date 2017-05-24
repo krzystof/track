@@ -11,9 +11,8 @@
 
 ## Todo
 
-- order by start desc when getting last orders...
-- order by total time: it's using the string instead of the length in seconds
-- sqlite driver
+- trk week when its empty
+- order by start desc when getting last orders
 - discard a record if time spent less than 5 minutes
 - `track <cmd> -p <project>` or `--<project>` filter `last`, `week` command on the given project
 - `track today` show the summary + totals for today

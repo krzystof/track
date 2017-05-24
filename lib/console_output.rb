@@ -44,7 +44,11 @@ class ConsoleOutput
   end
 
   def in_progress(record)
-    info("Working on task '#{record.task}' on the project '#{record.project}' for #{record.human_time}")
+    if record.task != "-"
+      info("Working on '#{record.project}', specifically '#{record.task}', for #{record.human_time}")
+    else
+      info("Working on '#{record.project}' for #{record.human_time}")
+    end
   end
 
   def completed(record)

@@ -47,8 +47,8 @@ class TestWeek < Minitest::Test
     expected = [
       "Time spent by project between the 2016-12-26 and the 2017-01-01:",
       "Project  Time spent",
-      "another  4 hours   ",
       "example  1 hour    ",
+      "another  4 hours   ",
       "TOTAL    5 hours   ",
     ].join("\n")
 
