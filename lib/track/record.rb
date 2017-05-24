@@ -25,6 +25,10 @@ class Record
     self.new Hash[hash.map { |(k,v)| [k.to_sym,v] }]
   end
 
+  def self.from_previous(record)
+    self.new({ :project => record.project, :task => record.task })
+  end
+
   def in_progress?
     @finish == nil
   end

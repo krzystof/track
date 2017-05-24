@@ -8,10 +8,10 @@
 - `track <project> <task>` stops the previous timer and start the new task
 - `track last <count>` show last x records (5 by default)
 - `track week` show the summary + totals for the week
+- `track weeks <count>` show the totals for the last weeks
 
 ## Todo
 
-- `track weeks <count>` show the totals for the last weeks
 - `track continue` add a new record based on the previous record
 - `track all` show the sum per project of all time
 - `track all --monthly` show the sum per project of all time per month

@@ -22,6 +22,7 @@ class ConsoleOutput
     puts
     print @colors.white.on_red " Crap! "
     puts @colors.regular(" #{message} ")
+    puts
   end
 
   def question(question)

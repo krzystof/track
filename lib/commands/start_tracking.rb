@@ -25,7 +25,6 @@ class StartTracking < BaseCommand
     end
 
     @timelog.save Record.new({ :project => project, :task => task, :start => DateTime.now })
-
     @output.in_progress @timelog.wip
   end
 end

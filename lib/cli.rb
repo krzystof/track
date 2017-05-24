@@ -3,6 +3,7 @@ require "commands/last_records"
 require "commands/start_tracking"
 require "commands/stop_tracking"
 require "commands/sum_by_week"
+require "commands/continue"
 require "table"
 
 class Cli
@@ -10,6 +11,7 @@ class Cli
     SumByWeek,
     StopTracking,
     LastRecords,
+    Continue,
     StartTracking,
     ShortSummary,
     # ContinueTracking
