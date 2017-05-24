@@ -3,7 +3,11 @@ class StringOutput
     @lines = []
   end
 
-  def text msg
+  def info(msg)
+    text msg
+  end
+
+  def text(msg)
     @lines.push msg
   end
 

@@ -17,10 +17,10 @@ class TestSumByWeek < Minitest::Test
     ])
 
     expected = [
-      "Time spent by project between the 2016-12-26 and the 2017-01-01:",
+      "Time spent by project between the 2016-12-26 and the 2017-01-01",
       "Project  Time spent",
       "example  1 hour    ",
-      "TOTAL    1 hour    ",
+      "Total    1 hour    ",
     ].join("\n")
 
     DateTime.stub :now, DateTime.parse("2017-01-01 19:00:00") do
@@ -48,11 +48,11 @@ class TestSumByWeek < Minitest::Test
     ])
 
     expected = [
-      "Time spent by project between the 2016-12-26 and the 2017-01-01:",
+      "Time spent by project between the 2016-12-26 and the 2017-01-01",
       "Project  Time spent",
       "example  1 hour    ",
       "another  4 hours   ",
-      "TOTAL    5 hours   ",
+      "Total    5 hours   ",
     ].join("\n")
 
     DateTime.stub :now, DateTime.parse("2017-01-01 19:00:00") do
