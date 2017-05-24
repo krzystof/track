@@ -14,7 +14,7 @@ class BaseCommand
   end
 
   def self.matches?(input)
-    raise NotImplementedError "#{self.class.name}#matches?() is not implemented"
+    input.first == @name
   end
 
   def execute

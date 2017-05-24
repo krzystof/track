@@ -4,17 +4,23 @@ require "commands/start_tracking"
 require "commands/stop_tracking"
 require "commands/sum_by_week"
 require "commands/continue"
+require "commands/sum"
 require "table"
 
 class Cli
   COMMANDS = [
-    SumByWeek,
-    StopTracking,
+    # First word match command:
     LastRecords,
+    StopTracking,
     Continue,
+    SumByWeek,
+    Sum,
+    # Catch all:
     StartTracking,
+    # No args:
     ShortSummary,
-    # ContinueTracking
+
+    # Todos:
     # SwitchTracking (between previous) -> can accept project name
     # WeeklyReport -> can accept project name
     # DailyReport -> can accept project name

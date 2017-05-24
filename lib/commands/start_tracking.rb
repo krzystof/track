@@ -9,7 +9,7 @@ class StartTracking < BaseCommand
   def execute
     if @timelog.has_wip?
       wip = @timelog.wip
-      output.question "Finish work on #{wip.project}?"
+      output.question "Finish work on '#{wip.project}'?"
       return if not input.confirmed?
       wip.complete
       @timelog.save wip

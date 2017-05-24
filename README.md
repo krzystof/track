@@ -2,21 +2,20 @@
 
 ## Commands
 
-- `track <project> <task>` starts a timer. task is optional
 - `track` show the 3 last completed records + the current one
+- `track <project> <task>` starts a timer. task is optional. if a task is running, it will prompt for confirmation to close the current record
+- `track continue` add a new record based on the previous record
 - `track stop` stop the timer
-- `track <project> <task>` stops the previous timer and start the new task
 - `track last <count>` show last x records (5 by default)
 - `track week` show the summary + totals for the week
 - `track weeks <count>` show the totals for the last weeks
+- `track sum` show the sum per project of all time
 
 ## Todo
 
-- `track continue` add a new record based on the previous record
-- `track all` show the sum per project of all time
-- `track all --monthly` show the sum per project of all time per month
-- `track all --weekly` show the sum per project of all time per week
-- `track all --project <project>` show the sum of a project
+- `track sum --monthly` show the sum of all time per month
+- `track sum --weekly` show the sum of all time per week
+- `track sum --project <project>` show the sum of a project
 - trk week when its empty
 - order by start desc when getting last orders
 - `track <cmd> -p <project>` or `--<project>` filter `last`, `week` command on the given project

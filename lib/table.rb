@@ -17,7 +17,6 @@ class Table
 
   private
   def to_table
-    puts
     return output.says_nothing_recorded if @rows.empty?
     all_rows = generate_rows
     calculate_column_widths(all_rows)

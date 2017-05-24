@@ -32,6 +32,10 @@ class SqliteTimelog
     to_record wip[0]
   end
 
+  def all
+    map_to_records db.execute "select * from records where finish != ''"
+  end
+
   def contains_project?(project)
     rows = db.execute "select * from records where project = ?", project
     rows.count > 0
@@ -51,6 +55,10 @@ class SqliteTimelog
   end
 
   private
+  def map_to_records(rows)
+    rows.map { |row| to_record(row) }
+  end
+
   def to_record(row)
     Record.new({
       :project => row[0],
@@ -69,5 +77,4 @@ class SqliteTimelog
     dbrows = db.execute "select * from records where finish > ? and finish < ?", [from.to_s, to.to_s]
     dbrows.map { |row| to_record(row) }
   end
-
 end
