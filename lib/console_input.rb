@@ -1,4 +1,9 @@
 class ConsoleInput
+  FLAGS = {
+    :weekly => ["-w", "--weekly"],
+    :monthly => ["-m", "--monthly"],
+  }
+
   def initialize(args)
     @args = args
   end
@@ -26,5 +31,14 @@ class ConsoleInput
   def confirmed?
       answer = STDIN.gets.chomp
       return true if ["y", "yes"].include? answer.downcase
+  end
+
+  def has_flag?(name)
+    input_flags.find { |flag| FLAGS[name].include?(flag) }
+  end
+
+  private
+  def input_flags
+    @args.select { |arg| arg.start_with?("-") }
   end
 end

@@ -11,6 +11,11 @@
 - `track weeks <count>` show the totals for the last weeks
 - `track sum` show the sum per project of all time
 
+Flags
+- `-w` or `--weekly`
+- `-m` or `--monthly`
+- `-p` or `--project`
+
 ## Todo
 
 - `track sum --monthly` show the sum of all time per month
