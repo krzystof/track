@@ -12,7 +12,7 @@ class Continue < BaseCommand
       output.error "You are currently working on something. Use 'switch' to work on the previous entry"
     else
       record = @timelog.last(1)
-      @timelog.save Record.from_previous(record)
+      @timelog.save Record.from_previous(record[0])
       @output.in_progress @timelog.wip
     end
   end

@@ -19,26 +19,22 @@ class ConsoleOutput
   end
 
   def error(message)
-    puts
     print @colors.white.on_red " Crap! "
     puts @colors.regular(" #{message} ")
     puts
   end
 
   def question(question)
-    puts
     print @colors.white.on_blue " Sure? "
     puts @colors.regular(" #{question} ")
   end
 
   def success(message)
-    puts
     print @colors.black.on_green " Yay! "
     puts @colors.regular(" #{message} ")
   end
 
   def info(message)
-    puts
     print @colors.white.on_blue " Hey! "
     puts @colors.regular(" #{message} ")
     puts
