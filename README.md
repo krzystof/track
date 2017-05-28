@@ -30,6 +30,7 @@ Flags
 - `track help` show the commands
 - when there is no task, write "Finish working on project" directly
 - if working on no specific task, don't print it in the output (eg "working on task '-' = is ugly")
+- remove the header for the aggregations
 
 #### To think about
 - ask for confirmation?

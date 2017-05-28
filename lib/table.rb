@@ -2,6 +2,7 @@ class Table
   attr_reader :output
 
   def initialize(output)
+    @headers = []
     @output = output
   end
 

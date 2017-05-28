@@ -1,5 +1,5 @@
 class CumulativeReport
-  def self.all(output, records)
+  def self.per_project(output, records)
     rows = CumulativeTimes.new(records).to_rows(&:project)
     Table.new(output).headers("Project", "Time spent").rows(rows)
   end
@@ -14,5 +14,14 @@ class CumulativeReport
     by_month = lambda { |record| record.start.strftime("%b %Y") }
     rows = CumulativeTimes.new(records).sort_by_label.to_rows(&by_month)
     Table.new(output).headers("Month", "Time").rows(rows)
+  end
+
+  def self.daily(output, records)
+    by_day = records.group_by { |record| record.finish.strftime("%A") }
+
+    by_day.each do |day, records_by_day|
+      output.section day
+      self.per_project(output, records_by_day)
+    end
   end
 end

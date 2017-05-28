@@ -17,7 +17,7 @@ class Sum < BaseCommand
       report = CumulativeReport.method(:monthly)
     else
       label = 'total by project'
-      report = CumulativeReport.method(:all)
+      report = CumulativeReport.method(:per_project)
     end
 
     output.info "Showing: #{label}, since #{time_ago}"

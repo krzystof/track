@@ -13,11 +13,11 @@ class Week
     self.class.of(@datetime - how_many * 7)
   end
 
-  def beginning
+  def start
     Timestamp.beginning_of_week @datetime
   end
 
-  def end
+  def finish
     Timestamp.end_of_week @datetime
   end
 end

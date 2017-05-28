@@ -42,7 +42,7 @@ class SqliteTimelog
   end
 
   def finish_during(timeframe)
-    between(timeframe.beginning, timeframe.end)
+    between(timeframe.start, timeframe.finish)
   end
 
   def last(count = 1)

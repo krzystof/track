@@ -19,25 +19,28 @@ class ConsoleOutput
   end
 
   def error(message)
-    print @colors.white.on_red " Crap! "
+    print @colors.red " ✖ "
     puts @colors.regular(" #{message} ")
-    puts
   end
 
   def question(question)
-    print @colors.white.on_blue " Sure? "
+    print @colors.white.on_blue " ? "
     puts @colors.regular(" #{question} ")
   end
 
   def success(message)
-    print @colors.black.on_green " Yay! "
+    print @colors.green " ✔ "
     puts @colors.regular(" #{message} ")
   end
 
   def info(message)
-    print @colors.white.on_blue " Hey! "
+    print @colors.blue " ➜ "
     puts @colors.regular(" #{message} ")
-    puts
+  end
+
+  def section(message)
+    print @colors.blue " ➜ "
+    puts @colors.regular(" #{message} ")
   end
 
   def in_progress(record)
@@ -49,6 +52,7 @@ class ConsoleOutput
   end
 
   def completed(record)
-    success("Completed task '#{record.task}' on the project '#{record.project}' after #{record.human_time}")
+    task_comment = record.task == "-" ? "" : "on task '#{record.task}' "
+    success("Stopped working #{task_comment}on the project '#{record.project}' after #{record.human_time}")
   end
 end

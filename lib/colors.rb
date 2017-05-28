@@ -11,7 +11,7 @@ class Colors
     magenta: 35,
     cyan:    36,
     white:   37,
-    on_black:   40,
+    on_black:   50,
     on_red:     41,
     on_green:   42,
     on_yellow:  43,
@@ -20,8 +20,6 @@ class Colors
     on_cyan:    46,
     on_white:   47,
   }.freeze
-
-  @text
 
   def initialize
     @fg = CODES[:white]
