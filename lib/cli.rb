@@ -6,6 +6,7 @@ require "commands/sum_by_week"
 require "commands/continue"
 require "commands/sum"
 require "table"
+require "invalid_input"
 
 class Cli
   COMMANDS = [
@@ -38,15 +39,17 @@ class Cli
   end
 
   def run
-    cmd = matching_command
-    if cmd
+    begin
+      cmd = matching_command
       cmd.execute @input, @output
-    else
-      output.error "I didn't catch that. Can you reformulate?"
+    rescue InvalidInput => e
+      output.error e.message
     end
   end
 
   def matching_command
-    COMMANDS.find { |c| c.matches? @input }
+    cmd = COMMANDS.find { |c| c.matches? @input }
+    raise InvalidInput.new "I didn't catch that command. Can you reformulate?" if not cmd
+    cmd
   end
 end

@@ -5,22 +5,29 @@ class Sum < BaseCommand
   @name = "sum"
 
   def execute
-    records = @timelog.all
+    if input.has_flag?(:project)
+      project = get_project_like input.flag(:project)
+      records = @timelog.on_project(project)
+    else
+      project = ""
+      records = @timelog.all
+    end
+
     oldest_date = records.min { |a, b| a.start <=> b.start }.start
     time_ago = TimeAgo.new(oldest_date)
 
     if input.has_flag?(:weekly)
-      label = 'weekly breakdown'
+      report_label = 'weekly breakdown'
       report = CumulativeReport.method(:weekly)
     elsif input.has_flag?(:monthly)
-      label = 'monthly breakdown'
+      report_label = 'monthly breakdown'
       report = CumulativeReport.method(:monthly)
     else
-      label = 'total by project'
+      report_label = 'total by project'
       report = CumulativeReport.method(:per_project)
     end
 
-    output.info "Showing: #{label}, since #{time_ago}"
+    output.info "Showing: #{report_label} #{project} since #{time_ago}"
     report.call(output, records)
   end
 end

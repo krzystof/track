@@ -45,6 +45,20 @@ class SqliteTimelog
     between(timeframe.start, timeframe.finish)
   end
 
+  def find_projects_like(str)
+    rows = db.execute "select distinct project from records where project like '%#{str}%'"
+    rows.flatten
+  end
+
+  def on_project(project)
+    map_to_records db.execute "select * from records where project = '#{project}'"
+  end
+
+  def last_on_project(project)
+    records = map_to_records db.execute "select * from records where project = '#{project}'"
+    records.max(1) { |a, b| a.finish <=> b.finish }
+  end
+
   def last(count = 1)
     dbrows = db.execute "select * from records where finish != '' order by start desc limit ?", count
     dbrows.reverse.map { |row| to_record(row) }

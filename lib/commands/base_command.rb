@@ -20,4 +20,16 @@ class BaseCommand
   def execute
     raise NotImplementedError "#{self.class.name}#execute() is not implemented"
   end
+
+  private
+  def get_project_like(string)
+      projects = @timelog.find_projects_like(string)
+      if not projects
+        raise InvalidInput.new "Could not find a project matching '#{string}'"
+      elsif projects.length > 1
+        raise InvalidInput.new "The project '#{string}' is ambiguous. I found these: #{projects}. Do refine."
+      else
+        projects.first
+      end
+  end
 end

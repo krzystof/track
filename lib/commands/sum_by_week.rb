@@ -21,13 +21,21 @@ class SumByWeek < BaseCommand
         print_daily_sums(records)
       end
 
-      output.info "Time spent by project for the week starting #{week.start.to_date} and finishing #{week.finish.to_date}"
-      CumulativeReport.per_project(output, records)
+      if records.empty?
+        output.error "nothing done between #{week.start_date} and #{week.finish_date}"
+      else
+        output.info "Time spent by project for the week starting #{week.start.to_date} and finishing #{week.finish.to_date}"
+        CumulativeReport.per_project(output, records)
+      end
     end
   end
 
   def print_daily_sums(records)
-    output.info "here's what happened this week"
-    CumulativeReport.daily(output, records)
+    if records.empty?
+      output.error "Nothing done this week"
+    else
+      output.info "here's what happened this week"
+      CumulativeReport.daily(output, records)
+    end
   end
 end

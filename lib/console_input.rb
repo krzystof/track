@@ -2,6 +2,7 @@ class ConsoleInput
   FLAGS = {
     :weekly => ["-w", "--weekly"],
     :monthly => ["-m", "--monthly"],
+    :project => ["-p", "--project"],
   }
 
   def initialize(args)
@@ -35,6 +36,11 @@ class ConsoleInput
 
   def has_flag?(name)
     input_flags.find { |flag| FLAGS[name].include?(flag) }
+  end
+
+  def flag(name)
+    idx = @args.find_index { |flag| FLAGS[name].include?(flag) }
+    at_position(idx + 1)
   end
 
   private

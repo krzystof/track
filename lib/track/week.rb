@@ -20,4 +20,12 @@ class Week
   def finish
     Timestamp.end_of_week @datetime
   end
+
+  def start_date
+    start.strftime("%d-%m-%Y")
+  end
+
+  def finish_date
+    finish.strftime("%d-%m-%Y")
+  end
 end

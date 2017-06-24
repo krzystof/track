@@ -16,7 +16,7 @@ class ShortSummary < BaseCommand
   private
   def show_last_five_records
     output.info "The last 5 things you did"
-    records = @timelog.last(3)
+    records = @timelog.last(5)
     Table.new(output).headers("Date", "Project", "Task", "Time").rows(RecordsList.new(records).to_rows)
   end
 
