@@ -19,7 +19,7 @@ class ConsoleOutput
   end
 
   def error(message)
-    print @colors.red " ✖ "
+    print @colors.red " ⨯ "
     puts @colors.regular(" #{message} ")
   end
 
@@ -29,7 +29,7 @@ class ConsoleOutput
   end
 
   def success(message)
-    print @colors.green " ✔ "
+    print @colors.green " ✓ "
     puts @colors.regular(" #{message} ")
   end
 

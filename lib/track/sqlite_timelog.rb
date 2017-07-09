@@ -56,7 +56,7 @@ class SqliteTimelog
 
   def last_on_project(project)
     records = map_to_records db.execute "select * from records where project = '#{project}'"
-    records.max(1) { |a, b| a.finish <=> b.finish }
+    records.max { |a, b| a.finish <=> b.finish }
   end
 
   def last(count = 1)
